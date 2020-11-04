@@ -1,0 +1,11 @@
+//update your info here to replace the bogus aws account and creds.
+{
+  "account_id":"xxx",
+  "is_local":true,
+  "key":"xxx",
+  "secret":"xxx",
+  "region":"us-east-1",
+  "local_endpoint":"http://localhost:8000",
+  "log_level":"Error",
+  "log_format_type":"json"
+}

@@ -1,0 +1,47 @@
+{
+  "ModelName": "Local",
+  "ModelMetadata": {
+    "Author": "Jeff",
+    "DateCreated": "Feb 19, 2020, 4:54 PM",
+    "DateLastModified": "Feb 19, 2020, 6:32 PM",
+    "Description": "test"
+  },
+  "DataModel": [
+    {
+      "TableName": "User",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "id",
+          "AttributeType": "S"
+        }
+      },
+      "DataAccess": {
+        "MySql": {}
+      }
+    },
+    {
+      "TableName": "UserDisplayName",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "user_display_name",
+          "AttributeType": "S"
+        }
+      },
+      "DataAccess": {
+        "MySql": {}
+      }
+    },
+    {
+      "TableName": "UserEmail",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "user_email",
+          "AttributeType": "S"
+        }
+      },
+      "DataAccess": {
+        "MySql": {}
+      }
+    }
+  ]
+}
