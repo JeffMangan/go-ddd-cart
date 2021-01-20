@@ -12,8 +12,8 @@ This project needs assistance to continue to deplop additional Aggregate Roots f
 ## Technologies
 Project is created with:
 * Go
-* asdfsaf
-* asdfaf
+* ......
+* ......
 	
 ## Project Structure
 The building blocks of this project include:
