@@ -10,10 +10,7 @@ This project needs additional contributers to buld Aggregate Roots following a s
 * Domain-driven design (DDD) is the concept that the structure and language of your code (class names, class methods, class variables) should match the business domain. For example, if your software processes loan applications, it might have classes such as LoanApplication and Customer, and methods such as AcceptOffer and Withdraw.
 	
 ## Technologies
-Project is created with:
-* Go
-* ......
-* ......
+Go is the programming language and it primarly targeted to use AWS Serverless services including Lambda, API Gateway, Cognito, IAM, DynamoDB, Aurora, and more.
 	
 ## Project Structure
 The building blocks of this project include:
