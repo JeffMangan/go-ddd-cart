@@ -6,7 +6,7 @@
 
 ## General info
 This project needs additional contributers to buld Aggregate Roots following a shopping cart domain. There  is also a lot of code that  could be improved, some of it is  marked with //ToDo.
-* This is a starter project of a Domain Driven Design implimentation using Go. The example emulates a typical shopping cart project, howver it is in the very beginnings and as of now only has the user aggregate root started.  
+* This is a starter project of a Domain Driven Design implimentation using Go. The example emulates a typical shopping cart project, however it is in the very beginnings and as of now only has the user aggregate root started.  
 * Domain-driven design (DDD) is the concept that the structure and language of your code (class names, class methods, class variables) should match the business domain. For example, if your software processes loan applications, it might have classes such as LoanApplication and Customer, and methods such as AcceptOffer and Withdraw.
 	
 ## Technologies
