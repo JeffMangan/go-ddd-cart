@@ -10,7 +10,6 @@ const checkVal = "y"
 
 var tempJSON = fmt.Sprintf(`{"%s": "%s"}`, checkKey, checkVal)
 
-
 func Test_NewConfigFileReader_returns_err_on_invalid_file(t *testing.T) {
 	_, err := NewConfigFromPath("/bad/file/path.zyy")
 	if err == nil {

@@ -1,8 +1,9 @@
 package shared
 
 import (
-	"github.com/spf13/viper"
 	"path/filepath"
+
+	"github.com/spf13/viper"
 )
 
 type Config struct {
@@ -16,10 +17,11 @@ type Config struct {
 	LogFormatType string
 }
 
-const ConfigPath string = "/home/jeff/Documents/Work/Code/go/go-ddd-cart/shared/config.json"
+const ConfigPath string = "/your path here/go-ddd-cart/shared/config.json"
 
 // NewConfigFromPath loads a config entity from a string
 func NewConfigFromPath(path string) (*Config, *CustomError) {
+
 	ext := filepath.Ext(path)
 	viper.SetConfigType(ext[1:])
 	viper.SetConfigFile(path)

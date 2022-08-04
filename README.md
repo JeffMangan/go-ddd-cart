@@ -25,6 +25,7 @@ The building blocks of this project include:
 
 ## Setup
 For the tests, the current  infra repo uses dynamodb local, it should use a mock (change soon).
+1. You must have the awscli installed and setup config using "aws configure", although ddb local does not use the keys, you can put whatever you want for local testing.
 1. Download and extract this file: https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.zip
 1. Copy and past only the DynamoDBLocal_lib & third_party_licenses folders & the DynamoDBLocal.jar file you just extracted and paste that folder into the db/dynamodb_local_latest folder.  This will keep from overwriting the needed project files.
 1. Go to the db/dynamodb_local_lastest folder and run the following java command to start the in memory db (install java if you have not)
