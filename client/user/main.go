@@ -39,17 +39,18 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	}
 
 	if logger, err = shared.NewLogger(config.LogLevel, config.LogFormatType); err != nil {
-		logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
-		logger.AddFieldToLog(shared.FieldTypeStructName, "shared.Logger")
-		logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "shared.NewLogger")
-		logger.AddFieldToLog(shared.FieldTypeSystemError, err)
-		logger.LogError(shared.LogTypeError)
+		//logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
+		//logger.AddFieldToLog(shared.FieldTypeStructName, "shared.Logger")
+		//logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "shared.NewLogger")
+		//logger.AddFieldToLog(shared.FieldTypeSystemError, err)
+		//logger.LogError(shared.LogTypeError)
 		shared.StandardErrorLog(err)
 		return events.APIGatewayProxyResponse{
 			StatusCode: 500,
 			Headers: map[string]string{
 				"Content-Type": "text/html",
 			},
+			Body: "An unknown error has occurred",
 		}, nil
 	}
 
