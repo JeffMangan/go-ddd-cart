@@ -1,18 +1,17 @@
 package main
 
 import (
-	"github.com/JeffMangan/go-ddd-cart/shared"
-	"github.com/aws/aws-lambda-go/events"
-
-	//"github.com/aws/aws-lambda-go/events"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
+
+	"github.com/JeffMangan/go-ddd-cart/shared"
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/stretchr/testify/assert"
 )
 
 //var test string = "hi"
 
-func setup(){}
+func setup()    {}
 func shutdown() {}
 
 func TestMain(m *testing.M) {
@@ -23,6 +22,7 @@ func TestMain(m *testing.M) {
 	shutdown()
 	os.Exit(code)
 }
+
 //func TestHandler(t *testing.T) {
 func TestSomething(t *testing.T) {
 	request := events.APIGatewayProxyRequest{}
@@ -36,7 +36,7 @@ func TestSomething(t *testing.T) {
 		Body: "",
 	}
 	//fmt.Println("handler test")
-	if response , err := Handler(request); err != nil {
+	if response, err := Handler(request); err != nil {
 		//todo:fix this
 		//fmt.Println("handler test failed")
 		//fmt.Println(response)

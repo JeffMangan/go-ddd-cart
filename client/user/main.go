@@ -22,14 +22,13 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	//todo:determine if this is the best type to use
 	var response map[string]interface{}
 
-	//todo:fix the circular reference here
 	if config, err = shared.NewConfigFromPath(shared.ConfigPath); err != nil {
-//		logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
-//		logger.AddFieldToLog(shared.FieldTypeStructName, "shared.Config")
-//		logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "shared.NewConfigFromPath")
-//		logger.AddFieldToLog(shared.FieldTypeSystemError, err)
-//		logger.LogError(shared.LogTypeError)
-		//panic(err.Error())
+		logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
+		logger.AddFieldToLog(shared.FieldTypeStructName, "shared.Config")
+		logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "shared.NewConfigFromPath")
+		logger.AddFieldToLog(shared.FieldTypeSystemError, err)
+		logger.LogError(shared.LogTypeError)
+		panic(err.Error())
 		shared.StandardErrorLog(err)
 		return events.APIGatewayProxyResponse{
 			StatusCode: 500,
@@ -40,11 +39,11 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	}
 
 	if logger, err = shared.NewLogger(config.LogLevel, config.LogFormatType); err != nil {
-		//logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
-		//logger.AddFieldToLog(shared.FieldTypeStructName, "shared.Logger")
-		//logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "shared.NewLogger")
-		//logger.AddFieldToLog(shared.FieldTypeSystemError, err)
-		//logger.LogError(shared.LogTypeError)
+		logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
+		logger.AddFieldToLog(shared.FieldTypeStructName, "shared.Logger")
+		logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "shared.NewLogger")
+		logger.AddFieldToLog(shared.FieldTypeSystemError, err)
+		logger.LogError(shared.LogTypeError)
 		shared.StandardErrorLog(err)
 		return events.APIGatewayProxyResponse{
 			StatusCode: 500,
@@ -104,7 +103,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
 		logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "json.Unmarshall")
 		logger.AddFieldToLog(shared.FieldTypeStructName, "map[string]interface{}")
-		logger.AddFieldToLog(shared.FieldTypeErrorInfo, "unable to parse request user params: " + request.Body)
+		logger.AddFieldToLog(shared.FieldTypeErrorInfo, "unable to parse request user params: "+request.Body)
 		logger.AddFieldToLog(shared.FieldTypeSystemError, e.Error())
 		logger.LogError(shared.LogTypeError)
 

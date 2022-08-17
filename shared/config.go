@@ -17,7 +17,8 @@ type Config struct {
 	LogFormatType string
 }
 
-const ConfigPath string = "/your path here/go-ddd-cart/shared/config.json"
+// ToDo: remove this and just find the correct path at runtime, also consider env varialbes
+const ConfigPath string = "/xxxxxxx/go-ddd-cart/shared/config.json"
 
 // NewConfigFromPath loads a config entity from a string
 func NewConfigFromPath(path string) (*Config, *CustomError) {
