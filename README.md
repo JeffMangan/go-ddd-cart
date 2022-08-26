@@ -5,12 +5,12 @@
 * [Setup](#setup)
 
 ## General info
-This project needs additional contributors to build Aggregate Roots following a shopping cart domain. There  is also a lot of code that  could be improved, some of it is  marked with //ToDo.
+This project needs additional contributors to build Aggregate Roots following a shopping cart domain,  must of domain specific logic has been impimented in the user. There  is also a lot of code that could be improved, some of it is  marked with //ToDo or just silly stuff that can be improved (wtf moments).
 * This is a starter project of a Domain Driven Design implementation using Go. The example emulates a typical shopping cart project, however it is in the very beginnings and as of now only has the user aggregate root started.  
 * Domain-driven design (DDD) is the concept that the structure and language of your code (class names, class methods, class variables) should match the business domain and behavior. For example, if your software processes loan applications, it might have classes such as LoanApplication and Customer, and methods such as AcceptOffer and Withdraw instead of plain old CRUD statements.
 	
 ## Technologies
-This solution is written in Go, and although I am targeting AWS Serverless services, since it uses custom interfaces and inversion of control, it can run on any environment that supports the go runtime by swapping out the underlying infrastructure layer (where the technical implementation is located).
+This solution is written in Go, and although I am targeting AWS Serverless services, since it uses custom interfaces and inversion of control, it can run on any environment that supports the go runtime by swapping out the underlying infrastructure layer (where the technical implementation is located) and adhering to the defined interfaces.
 	
 ## Project Structure
 The building blocks of this project include:
@@ -23,7 +23,8 @@ The building blocks of this project include:
 * db --  This is where the local data store is implemented and uses DynamoDB Local for the automated testing.  This should be updated to not depend on a local db, which is possible by simply creating mock data that adheres to the repo interface and can easily be switched out.
 
 
-## Setup (this needs to be automated, most all of this is for using ddblocal for testing)
+## (currently switching this over to docker)
+### For now, setup (this is for using ddblocal for testing, which should be using mocks and ddb for integration testing)
 For the tests, the current  infra repo uses dynamodb local, it should use a mock (change soon).
 1. You must have the Java runtime and awscli installed and setup config using "aws configure", although ddb local does not use the keys, you can put whatever you want for local testing.  Here is the link to install the jre https://www.java.com/en/download/manual.jsp and awscli https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 1. DynamoDB local is used https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html therefore you must download and extract this file: https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.zip
