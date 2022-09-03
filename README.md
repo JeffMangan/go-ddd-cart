@@ -24,6 +24,8 @@ The building blocks of this project include:
 
 ## Setup (this needs to be automated, most all of this is for using ddblocal for testing)
 
+For the tests, the current  infra repo uses dynamodb local, it should use a mock (change soon).
+
 -----------------new steps to use docker and not install ddblocal locally----------------
 docker run -p 8000:8000 amazon/dynamodb-local
 
@@ -40,13 +42,15 @@ web based ddb local amin console
 https://www.npmjs.com/package/dynamodb-admin
 
 ---------------------------------------------
-For the tests, the current  infra repo uses dynamodb local, it should use a mock (change soon).
+
+***** This is no longer needed if you use docker *****
 1. You must have the Java runtime and awscli installed and setup config using "aws configure", although ddb local does not use the keys, you can put whatever you want for local testing.  Here is the link to install the jre https://www.java.com/en/download/manual.jsp and awscli https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 1. DynamoDB local is used https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html therefore you must download and extract this file: https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.zip
 1. Install the nosql workbench to view the structure of the ddb database https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html
 1. Copy and past only the DynamoDBLocal_lib & third_party_licenses folders & the DynamoDBLocal.jar file you just extracted and paste that folder into the db/dynamodb_local_latest folder.  This will keep from overwriting the needed project files.
 1. Go to the db/dynamodb_local_latest folder and run the following java command to start the in memory db (install java if you have not)
 1. java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb project
+********************************
+
 1.  In the shared/config.go file change the ConfigPath constant to the path on your local machine
 1. You should now be able to run all tests from the project root using "go test ./..."
-
