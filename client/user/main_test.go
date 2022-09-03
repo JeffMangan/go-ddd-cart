@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"testing"
 
@@ -26,7 +27,7 @@ func TestMain(m *testing.M) {
 //func TestHandler(t *testing.T) {
 func TestSomething(t *testing.T) {
 	request := events.APIGatewayProxyRequest{}
-	request.Body = "{\"first_name\":\"Jeff\",\"last_name\":\"Mangan\",\"display_name\":\"JeffM\",\"email\":\"Jeff@Magentatech.com\"}"
+	request.Body = "{\"first_name\":\"FnameHere\",\"last_name\":\"LnameHEre\",\"display_name\":\"MyDisplayNameHere\",\"email\":\"MyEmailHere@blahblahblah.com\"}"
 
 	expectedResponse := events.APIGatewayProxyResponse{
 		StatusCode: 200,
@@ -38,9 +39,9 @@ func TestSomething(t *testing.T) {
 	//fmt.Println("handler test")
 	if response, err := Handler(request); err != nil {
 		//todo:fix this
-		//fmt.Println("handler test failed")
-		//fmt.Println(response)
-		//fmt.Println(err)
+		fmt.Println("handler test failed")
+		fmt.Println(response)
+		fmt.Println(err)
 	} else {
 		assert.Equal(t, expectedResponse.Headers, response.Headers)
 		assert.Nil(t, shared.ParseUUID(response.Body))

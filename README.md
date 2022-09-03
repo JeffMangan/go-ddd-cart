@@ -22,8 +22,24 @@ The building blocks of this project include:
 * shared -- Shared logic
 * db --  This is where the local data store is implemented and uses DynamoDB Local for the automated testing.  This should be updated to not depend on a local db, which is possible by simply creating mock data that adheres to the repo interface and can easily be switched out.
 
-
 ## Setup (this needs to be automated, most all of this is for using ddblocal for testing)
+
+-----------------new steps to use docker and not install ddblocal locally----------------
+docker run -p 8000:8000 amazon/dynamodb-local
+
+aws dynamodb create-table \
+--table-name User \
+--attribute-definitions AttributeName=id,AttributeType=S \
+--key-schema AttributeName=id,KeyType=HASH \
+--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+--endpoint-url http://localhost:8000
+
+aws dynamodb list-tables --endpoint-url http://localhost:8000
+
+web based ddb local amin console
+https://www.npmjs.com/package/dynamodb-admin
+
+---------------------------------------------
 For the tests, the current  infra repo uses dynamodb local, it should use a mock (change soon).
 1. You must have the Java runtime and awscli installed and setup config using "aws configure", although ddb local does not use the keys, you can put whatever you want for local testing.  Here is the link to install the jre https://www.java.com/en/download/manual.jsp and awscli https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 1. DynamoDB local is used https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html therefore you must download and extract this file: https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.zip

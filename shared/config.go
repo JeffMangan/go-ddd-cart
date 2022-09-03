@@ -1,9 +1,8 @@
 package shared
 
 import (
-	"path/filepath"
-
 	"github.com/spf13/viper"
+	"path/filepath"
 )
 
 type Config struct {
@@ -18,11 +17,18 @@ type Config struct {
 }
 
 // ToDo: remove this and just find the correct path at runtime, also consider env varialbes
-const ConfigPath string = "/xxxxxxx/go-ddd-cart/shared/config.json"
+const ConfigPath string = "/YourPathHere/go-ddd-cart/shared/config.json"
 
 // NewConfigFromPath loads a config entity from a string
 func NewConfigFromPath(path string) (*Config, *CustomError) {
-
+	/*
+		ex, err := os.Executable()
+		if err != nil {
+			panic(err)
+		}
+		exPath := filepath.Dir(ex)
+		fmt.Println(exPath)
+	*/
 	ext := filepath.Ext(path)
 	viper.SetConfigType(ext[1:])
 	viper.SetConfigFile(path)
