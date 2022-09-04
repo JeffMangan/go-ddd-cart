@@ -1,15 +1,14 @@
 package shared
 
 import (
-	"path/filepath"
-
 	"github.com/spf13/viper"
+	"path/filepath"
 )
 
 type Config struct {
 	AccountID     string
 	IsLocal       bool
-	LocalEndPoint string
+	EndPoint      string
 	Region        string
 	Key           string
 	Secret        string
@@ -18,11 +17,18 @@ type Config struct {
 }
 
 // ToDo: remove this and just find the correct path at runtime, also consider env varialbes
-const ConfigPath string = "/xxxxxxx/go-ddd-cart/shared/config.json"
+const ConfigPath string = "/home/jmangan/Documents/code/go/go-ddd-cart/shared/config.json"
 
 // NewConfigFromPath loads a config entity from a string
 func NewConfigFromPath(path string) (*Config, *CustomError) {
-
+	/*
+		ex, err := os.Executable()
+		if err != nil {
+			panic(err)
+		}
+		exPath := filepath.Dir(ex)
+		fmt.Println(exPath)
+	*/
 	ext := filepath.Ext(path)
 	viper.SetConfigType(ext[1:])
 	viper.SetConfigFile(path)
@@ -35,7 +41,7 @@ func NewConfigFromPath(path string) (*Config, *CustomError) {
 		Key:           viper.GetString("key"),
 		Secret:        viper.GetString("secret"),
 		Region:        viper.GetString("region"),
-		LocalEndPoint: viper.GetString("local_endpoint"),
+		EndPoint:      viper.GetString("end_point"),
 		LogLevel:      viper.GetString("log_level"),
 		LogFormatType: viper.GetString("log_format_type"),
 	}, nil
