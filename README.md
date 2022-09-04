@@ -43,5 +43,5 @@ As mentioned above, this is only because the current tests are using dynamodb lo
     * https://www.npmjs.com/package/dynamodb-admin
 
 1.  In the shared/config.go file change the ConfigPath constant to the path on your local machine
-1. You should now be able to run all tests from the project root using "go test ./..."
 
+You should now be able to run all tests from the project root using "go test ./..."
