@@ -4,7 +4,7 @@
   "key":"xxx",
   "secret":"xxx",
   "region":"us-east-1",
-  "local_endpoint":"http://localhost:8000",
+  "end_point":"http://localhost:8000",
   "log_level":"Error",
   "log_format_type":"json"
 }

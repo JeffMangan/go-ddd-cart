@@ -27,7 +27,7 @@ func TestMain(m *testing.M) {
 //func TestHandler(t *testing.T) {
 func TestSomething(t *testing.T) {
 	request := events.APIGatewayProxyRequest{}
-	request.Body = "{\"first_name\":\"FnameHere\",\"last_name\":\"LnameHEre\",\"display_name\":\"MyDisplayNameHere\",\"email\":\"MyEmailHere@blahblahblah.com\"}"
+	request.Body = "{\"first_name\":\"FnameHere\",\"last_name\":\"LnameHEre\",\"display_name\":\"MyDisplayN\",\"email\":\"MyEmailHere@blahblahblah.com\"}"
 
 	expectedResponse := events.APIGatewayProxyResponse{
 		StatusCode: 200,

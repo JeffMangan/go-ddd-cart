@@ -9,8 +9,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
-type DynamoDBUserRepo struct{
-
+type DynamoDBUserRepo struct {
+	logger shared.ILogger
+	config *shared.Config
 }
 
 func (u *DynamoDBUserRepo) Find(id string) (*model.User, *shared.CustomError) {
@@ -29,13 +30,11 @@ func (u *DynamoDBUserRepo) Create(user *model.User) *shared.CustomError {
 		TableName: aws.String(tableName),
 	}
 
-
 	cfg := aws.Config{}
-	cfg.Region = aws.String("eu-west-2")
-	cfg.Endpoint = aws.String("http://localhost:8000")
+	cfg.Region = aws.String(u.config.Region)
+	cfg.Endpoint = aws.String(u.config.EndPoint)
 	sess := session.Must(session.NewSession())
 	db := dynamodb.New(sess, &cfg)
-
 
 	_, err = db.PutItem(input)
 	if err != nil {
@@ -53,7 +52,10 @@ func (u *DynamoDBUserRepo) Delete(id string) *shared.CustomError {
 }
 
 //NewDynamoDBUserRepository
-func NewDynamoDBUserRepository() (*DynamoDBUserRepo, *shared.CustomError) {
-	return new(DynamoDBUserRepo), nil
+func NewDynamoDBUserRepository(l shared.ILogger, c *shared.Config) (*DynamoDBUserRepo, *shared.CustomError) {
+	ur := new(DynamoDBUserRepo)
+	ur.logger = l
+	ur.config = c
+	return ur, nil
 	//todo:add logic here
 }
