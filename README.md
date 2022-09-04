@@ -24,7 +24,7 @@ The building blocks of this project include:
 * model -- Domain Entities
 * shared -- Shared logic
 
-## Setup (this needs to be automated, most all of this is for using ddblocal for testing)
+## Setup
 As mentioned above, this is only because the current tests are using dynamodb local.
 
 * docker run -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb
