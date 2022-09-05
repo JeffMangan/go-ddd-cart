@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"time"
 )
+
 //https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/dynamodbattribute/
 //User stores info for authentication and other basic User info
 type User struct {
@@ -17,13 +18,12 @@ type User struct {
 	DisplayNamex string `json:"display_name,omitempty"`
 }
 
-
 var (
 	firstNameMaxLength int = 50
-	lastNameMaxLength = 50
-	displayNameSize = map[string]int{
+	lastNameMaxLength      = 50
+	displayNameSize        = map[string]int{
 		"min": 5,
-		"max" : 15,
+		"max": 15,
 	}
 )
 
@@ -34,19 +34,21 @@ func (u *User) SetUpdateDate() {
 
 //Email gets the users Emailx address //////////////////////////////////
 func (u *User) Email() string { return u.Emailx }
+
 //SetEmail sets the users Emailx address
 func (u *User) SetEmail(email string) *shared.CustomError {
 	if govalidator.IsEmail(email) {
 		u.Emailx = email
 		return nil
 	} else if email == "" {
-		return  shared.NewCustomError("Email is required", shared.ErrorTypeNilArgument)
+		return shared.NewCustomError("Email is required", shared.ErrorTypeNilArgument)
 	}
 	return shared.NewCustomError("Email is not valid", shared.ErrorTypeInvalidArgument)
 }
 
 //FirstName gets the users first name //////////////////////////////////
 func (u *User) FirstName() string { return u.FirstNamex }
+
 //SetFirstName sets the users first name
 func (u *User) SetFirstName(firstName string) *shared.CustomError {
 	if firstName == "" {
@@ -62,6 +64,7 @@ func (u *User) SetFirstName(firstName string) *shared.CustomError {
 
 //LastName gets the users last name //////////////////////////////////
 func (u *User) LastName() string { return u.LastNamex }
+
 //SetLastName sets the users last name
 func (u *User) SetLastName(lastName string) *shared.CustomError {
 	if lastName == "" {
@@ -77,6 +80,7 @@ func (u *User) SetLastName(lastName string) *shared.CustomError {
 
 //DisplayName gets the users Display name //////////////////////////////////
 func (u *User) DisplayName() string { return u.DisplayNamex }
+
 //SetDisplayName sets the users Display name
 func (u *User) SetDisplayName(displayName string) *shared.CustomError {
 
@@ -89,7 +93,7 @@ func (u *User) SetDisplayName(displayName string) *shared.CustomError {
 	} else {
 		Re := regexp.MustCompile("^[a-zA-Z0-9_-]*$")
 		if !Re.MatchString(displayName) {
-			return shared.NewCustomError("Display name may only contain alpha numeric characters",shared.ErrorTypeInvalidArgument)
+			return shared.NewCustomError("Display name may only contain alpha numeric characters", shared.ErrorTypeInvalidArgument)
 		}
 	}
 	u.DisplayNamex = displayName

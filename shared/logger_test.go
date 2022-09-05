@@ -1,6 +1,5 @@
 package shared
 
-
 import (
 	//"fmt"
 	"testing"
@@ -38,7 +37,6 @@ func TestInterface(t *testing.T) {
 	assert.NotNil(t, li, "Expected logger to not be empty")
 	assert.Nil(t, err, "Expecting an empty error")
 }
-
 
 func TestLoggerConstruction(t *testing.T) {
 	_, err := NewLogger(checkloglevel, "json")

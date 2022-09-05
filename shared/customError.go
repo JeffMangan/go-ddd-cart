@@ -17,7 +17,7 @@ const (
 	//ErrorTypeInvalidUserArgument represents invalid input from a user
 	ErrorTypeInvalidUserArgument ErrorType = "InvalidUserInput"
 	//ErrorTypeInvalidArgument represents an invalid argument
-	ErrorTypeInvalidArgument ErrorType = "InvalidArgument"
+	ErrorTypeInvalidArgument   ErrorType = "InvalidArgument"
 	ErrorTypeNotUniqueArgument ErrorType = "NotUniqueArgument"
 	//ErrorTypeNilArgument represents null argument
 	ErrorTypeNilArgument ErrorType = "NilArgument"
@@ -29,8 +29,8 @@ const (
 
 // CustomError is an error implementation that includes a time and message.
 type CustomError struct {
-	when      time.Time
-	what      string
+	when time.Time
+	what string
 	//where 	string
 	errorType ErrorType
 }
@@ -59,7 +59,7 @@ func (e *CustomError) ErrorType() ErrorType {
 }
 
 //NewCustomError returns a shared error message with a time and message
-func NewCustomError(what string, /*where string,*/ errorType ErrorType) *CustomError {
+func NewCustomError(what string /*where string,*/, errorType ErrorType) *CustomError {
 	if what == "" {
 		panic("Missing error message")
 	}

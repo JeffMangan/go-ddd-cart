@@ -24,7 +24,7 @@ const (
 	FieldTypeUserError      FieldType = "UserError"
 	FieldTypeSystemError    FieldType = "SystemError"
 	FieldTypeFunctionCalled FieldType = "MethodCall"
-	FieldTypeErrorInfo		FieldType = "ErrorInfo"
+	FieldTypeErrorInfo      FieldType = "ErrorInfo"
 	//FieldTypeErrorContent FieldType = "ErrorContent"
 	//FieldTypeConfigInfo   FieldType = "ConfigInfo"
 
@@ -33,7 +33,6 @@ const (
 	LogTypePanic LogType = "Panic Log"
 	LogTypeError LogType = "Error Log"
 )
-
 
 type Logger struct {
 	logger *logrus.Logger

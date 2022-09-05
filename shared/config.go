@@ -16,25 +16,28 @@ type Config struct {
 }
 
 func GetConfigPath() string {
+	os.Setenv("CONFIG_FILE_PATH", "/home/jmangan/Documents/code/go/go-ddd-cart/")
 	return os.Getenv("CONFIG_FILE_PATH")
 }
 
 // LoadConfig reads configuration from file or environment variables.
-func LoadConfig(path string) (*Config, *CustomError) {
+func LoadConfig(path string) (config *Config, customError *CustomError) {
 	viper.AddConfigPath(path)
 	viper.SetConfigName("app")
 	viper.SetConfigType("env")
 
 	viper.AutomaticEnv()
-}
 
-type Config struct {
-	AccountID     string
-	IsLocal       bool
-	EndPoint      string
-	Region        string
-	Key           string
-	Secret        string
-	LogLevel      string
-	LogFormatType string
+	err := viper.ReadInConfig()
+	if err != nil {
+		customError = NewCustomError(err.Error(), ErrorTypeSystem)
+		return
+	} else {
+		err = viper.Unmarshal(&config)
+		if err != nil {
+			customError = NewCustomError(err.Error(), ErrorTypeSystem)
+			return
+		}
+	}
+	return
 }

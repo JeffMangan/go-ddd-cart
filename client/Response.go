@@ -24,4 +24,3 @@ func NewClientResponse() *ClientResponse {
 	Output.Headers["Access-Control-Allow-Origin"] = "*"
 	return Output
 }
-

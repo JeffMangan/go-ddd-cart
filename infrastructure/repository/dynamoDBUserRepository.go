@@ -52,10 +52,10 @@ func (u *DynamoDBUserRepo) Delete(id string) *shared.CustomError {
 }
 
 //NewDynamoDBUserRepository
-func NewDynamoDBUserRepository(l shared.ILogger, c *shared.Config) (*DynamoDBUserRepo, *shared.CustomError) {
+func NewDynamoDBUserRepository(l shared.ILogger, c shared.Config) (*DynamoDBUserRepo, *shared.CustomError) {
 	ur := new(DynamoDBUserRepo)
 	ur.logger = l
-	ur.config = c
+	ur.config = &c
 	return ur, nil
 	//todo:add logic here
 }

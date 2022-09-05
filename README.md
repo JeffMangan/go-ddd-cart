@@ -5,8 +5,8 @@
 * [Setup](#setup)
 
 ## General info
-This is a Go app with some poc quality code in certain areas which will need more attention.  Essentially if you see anything that makes you think "WTF, this is stupid" is probably one of those areas, given that the goal is to impliment things like SOLID, KISS, and YAGNI.
-* This is a starter project of a Domain Driven Design implementation using Go. The example emulates a typical shopping cart project, however it is in the very beginnings and as of now only has the user aggregate root started.  
+This is a Go app with some poc quality code in certain areas which will need more attention.  Essentially if you see anything that makes you think "WTF, this is stupid" it is probably one of those areas, given that the goal is to impliment things like SOLID, KISS, and YAGNI.
+* This is a starter project of a Domain Driven Design implementation using Go. The example emulates a typical shopping cart project, however it is in the very beginnings and as of now, aside from the infra and shared folders, the rest has only been started for the user.  
 * Domain-driven design (DDD) is the concept that the structure and language of your code (class names, class methods, class variables) should match the business domain and behavior. For example, if your software processes loan applications, it might have classes such as LoanApplication and Customer, and methods such as AcceptOffer and Withdraw instead of plain old CRUD statements.
 	
 ## Technologies
@@ -24,14 +24,11 @@ The building blocks of this project include:
 * model -- Domain Entities
 * shared -- Shared logic
 
-## Setup
-As mentioned above, this is only because the current tests are using dynamodb local.
-<<<<<<< HEAD
-
+## Setup (for DynamoDB Local Testing)
 * docker run -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb
   * to understand the cmd line params go here https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html#DynamoDBLocal.CommandLineOptions 
-* This next step is needed each time you start a new instance of ddb local, the user table will need to be created.  The enpoint-url is specific to ddb local only.
-
+  * if you are unable to connect, make sure there are no existing processes running on port 8000.
+* This next step is needed each time you run a new container instance, the user table will need to be created.  The endpoint-url is specific to ddb local only.
   * aws dynamodb create-table \
 --table-name User \
 --attribute-definitions AttributeName=id,AttributeType=S \
@@ -47,28 +44,10 @@ As mentioned above, this is only because the current tests are using dynamodb lo
    * export AWS_DDBLOCAL_REGION=us-east-1
    * export LOG_LEVEL=Error
    * export LOG_FORMAT_TYPE=json
-   * export CONFIG_FILE_PATH=whever_you_put_it/go-ddd-cart/config.json
-     * Update the path to the actual path of your config file 
+   * export CONFIG_FILE_PATH=whever_you_put_it/go-ddd-cart/
+     * Update the path to the actual path of your root folder where app.env file is located
+     * You may have to configure your ide to use configuration setup for env variables.
 
-You should now be able to run all tests from the project root using "go test ./..."
-=======
 
-* docker run -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb
-  * to understand the cmd line params go here https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html#DynamoDBLocal.CommandLineOptions 
-* This next step is needed each time you start a new instance of ddb local, the user table will need to be created.  The enpoint-url is specific to ddb local only.
-
-  * aws dynamodb create-table \
---table-name User \
---attribute-definitions AttributeName=id,AttributeType=S \
---key-schema AttributeName=id,KeyType=HASH \
---provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
---endpoint-url http://localhost:8000
-  * aws dynamodb list-tables --endpoint-url http://localhost:8000
-    * Only required if you want to see that the user table was created.
-  * web based ddb local amin console (this is not required but can be helpful to easily see your data)
-    * https://www.npmjs.com/package/dynamodb-admin
-
-1.  In the shared/config.go file change the ConfigPath constant to the path on your local machine
->>>>>>> master
-
-You should now be able to run all tests from the project root using "go test ./..."
+## You should now be able to run all tests from the project root using "go test ./..."
+* If you get failing tests, make sure your env variables are working, and that you are able to connet to dynamodb inside of docker.

@@ -54,7 +54,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		}, nil
 	}
 
-	if repo, err = repository.NewDynamoDBUserRepository(logger, config); err != nil {
+	if repo, err = repository.NewDynamoDBUserRepository(logger, *config); err != nil {
 		logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
 		logger.AddFieldToLog(shared.FieldTypeStructName, "repository.DynamoDBUserRepository")
 		logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "repository.NewDynamoDBUserRepository")

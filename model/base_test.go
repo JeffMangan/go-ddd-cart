@@ -7,14 +7,12 @@ import (
 	"time"
 )
 
-
-
 type BaseTestSuite struct {
 	suite.Suite
-	b *base
-	fakeID, fakeETag string
+	b                                         *base
+	fakeID, fakeETag                          string
 	pastDate, pasterDate, futureDate, nowDate time.Time
-	deleted bool
+	deleted                                   bool
 }
 
 func (suite *BaseTestSuite) SetupTest() {

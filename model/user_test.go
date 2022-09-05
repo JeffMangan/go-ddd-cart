@@ -7,14 +7,12 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-
-
 type UserTestSuite struct {
 	suite.Suite
-	u, uu *User
-	bytes []byte
+	u, uu                                   *User
+	bytes                                   []byte
 	firstName, lastName, displayName, email string
-	params map[string]interface{}
+	params                                  map[string]interface{}
 }
 
 func (suite *UserTestSuite) SetupTest() {
@@ -31,7 +29,6 @@ func (suite *UserTestSuite) SetupTest() {
 	params["Email"] = suite.email
 	suite.params = params
 	suite.u, _ = NewUser(suite.params)
-
 
 	suite.bytes = []byte(fmt.Sprintf(`{
 		"ID": "%s",

@@ -10,7 +10,6 @@ This layer is the heart of business software.
 */
 
 type User struct {
-
 }
 
 func (u *User) DoStuff() *shared.CustomError {

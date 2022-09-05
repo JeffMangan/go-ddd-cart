@@ -9,5 +9,3 @@ type IUserRepository interface {
 	Update(user *User) *shared.CustomError
 	Delete(id string) *shared.CustomError
 }
-
-

@@ -13,13 +13,13 @@ It does not have state reflecting the business situation, but it can have state 
 for the user or the program.
 */
 
-
 //user is the coordinator for all user domain behaviors
 type User struct {
 	repo   model.IUserRepository
 	logger shared.ILogger
 	config *shared.Config
 }
+
 func (u *User) Register(user map[string]interface{}) (map[string]interface{}, *shared.CustomError) {
 
 	//todo: do stuff with domain if needed
@@ -37,7 +37,7 @@ func (u *User) Register(user map[string]interface{}) (map[string]interface{}, *s
 	}
 
 	response := make(map[string]interface{})
-	response["id"]=uu.ID()
+	response["id"] = uu.ID()
 
 	u.logger.AddFieldToLog(shared.FieldTypeUserInput, user)
 	u.logger.AddFieldToLog(shared.FieldTypeFunctionName, "application.User.Register")
@@ -48,7 +48,7 @@ func (u *User) Register(user map[string]interface{}) (map[string]interface{}, *s
 	return response, nil
 }
 
-func NewUserApplication(r model.IUserRepository, l shared.ILogger, c *shared.Config) (*User,  *shared.CustomError) {
+func NewUserApplication(r model.IUserRepository, l shared.ILogger, c *shared.Config) (*User, *shared.CustomError) {
 	return &User{
 		r,
 		l,

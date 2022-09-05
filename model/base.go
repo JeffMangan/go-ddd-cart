@@ -17,7 +17,7 @@ const (
 
 //base is embedded into all entities to provide common meta data
 type base struct {
-	IDx             string    `json:"id,omitempty"`              //IDx uniquely identifies a domain entity
+	IDx             string    `json:"id,omitempty"`               //IDx uniquely identifies a domain entity
 	DateCreatedUTCx time.Time `json:"date_created_utc,omitempty"` //DateCreatedUTCx is the date the base was created in UTC time
 	DateUpdatedUTCx time.Time `json:"date_updated_utc,omitempty"` //DateUpdatedUTCx is the date the base was last updated in UTC time
 	Deletedx        bool      `json:"deleted,omitempty"`          //Deletedx is if the base has been marked as Deletedx. Items marked for deletion should only be used for internal purposes.
@@ -103,18 +103,19 @@ func LoadExistingBase(id string, dateCreatedUTC time.Time, dateUpdatedUTC time.T
 		//tracerID:        eTag,
 	}, nil
 }
+
 //typeAssert will return nil if the value does not exist otherwise when  type casting it will blow up
 func checkNil(v interface{}) interface{} {
-//todo: look at this janky code for a better way to do this
+	//todo: look at this janky code for a better way to do this
 	switch v.(type) {
 	case nil:
-		return nil            // does not exist or if nil already then passthrough
+		return nil // does not exist or if nil already then passthrough
 	default:
-		return v        // it has a value
+		return v // it has a value
 	}
 }
 
 // newBase returns a new base model
 func newBase() *base {
-	return &base{shared.NewUUID(), time.Now().UTC(), time.Now().UTC(), false/*, shared.NewUUID()*/}
+	return &base{shared.NewUUID(), time.Now().UTC(), time.Now().UTC(), false /*, shared.NewUUID()*/}
 }
