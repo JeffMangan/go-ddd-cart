@@ -22,7 +22,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	//todo:determine if this is the best type to use
 	var response map[string]interface{}
 
-	if config, err = shared.NewConfigFromPath(shared.ConfigPath); err != nil {
+	if config, err = shared.LoadConfig(shared.GetConfigPath()); err != nil {
 		//logger.AddFieldToLog(shared.FieldTypeFunctionName, "Handler")
 		//logger.AddFieldToLog(shared.FieldTypeStructName, "shared.Config")
 		//logger.AddFieldToLog(shared.FieldTypeFunctionCalled, "shared.NewConfigFromPath")

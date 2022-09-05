@@ -41,7 +41,13 @@ As mentioned above, this is only because the current tests are using dynamodb lo
     * Only required if you want to see that the user table was created.
   * web based ddb local amin console (this is not required but can be helpful to easily see your data)
     * https://www.npmjs.com/package/dynamodb-admin
+ * The following environment variables need to be created
+   * export AWS_DDBLOCAL_ENDPOINT=http://localhost:8000
+   * export AWS_DDBLOCAL_REGION=us-east-1
+   * export LOG_LEVEL=Error
+   * export LOG_FORMAT_TYPE=json
+   * export CONFIG_FILE_PATH=whever_you_put_it/go-ddd-cart/config.json
+     * Update the path to the actual path of your config file 
 
-1.  In the shared/config.go file change the ConfigPath constant to the path on your local machine
-1. You should now be able to run all tests from the project root using "go test ./..."
+You should now be able to run all tests from the project root using "go test ./..."
 
