@@ -2,8 +2,31 @@ package shared
 
 import (
 	"github.com/spf13/viper"
-	"path/filepath"
+	"os"
 )
+
+type Config struct {
+	AccountID     string `mapstructure:""`
+	EndPoint      string `mapstructure:"AWS_DDBLOCAL_ENDPOINT"`
+	Region        string `mapstructure:"AWS_DDBLOCAL_REGION"`
+	Key           string `mapstructure:""`
+	Secret        string `mapstructure:""`
+	LogLevel      string `mapstructure:"LOG_LEVEL"`
+	LogFormatType string `mapstructure:"LOG_FORMAT_TYPE"`
+}
+
+func GetConfigPath() string {
+	return os.Getenv("CONFIG_FILE_PATH")
+}
+
+// LoadConfig reads configuration from file or environment variables.
+func LoadConfig(path string) (*Config, *CustomError) {
+	viper.AddConfigPath(path)
+	viper.SetConfigName("app")
+	viper.SetConfigType("env")
+
+	viper.AutomaticEnv()
+}
 
 type Config struct {
 	AccountID     string
@@ -14,35 +37,4 @@ type Config struct {
 	Secret        string
 	LogLevel      string
 	LogFormatType string
-}
-
-// ToDo: remove this and just find the correct path at runtime, also consider env varialbes
-const ConfigPath string = "/home/jmangan/Documents/code/go/go-ddd-cart/shared/config.json"
-
-// NewConfigFromPath loads a config entity from a string
-func NewConfigFromPath(path string) (*Config, *CustomError) {
-	/*
-		ex, err := os.Executable()
-		if err != nil {
-			panic(err)
-		}
-		exPath := filepath.Dir(ex)
-		fmt.Println(exPath)
-	*/
-	ext := filepath.Ext(path)
-	viper.SetConfigType(ext[1:])
-	viper.SetConfigFile(path)
-	if err := viper.ReadInConfig(); err != nil {
-		return nil, NewCustomError(err.Error(), ErrorTypeSystem)
-	}
-	return &Config{
-		AccountID:     viper.GetString("account_id"),
-		IsLocal:       viper.GetBool("is_local"),
-		Key:           viper.GetString("key"),
-		Secret:        viper.GetString("secret"),
-		Region:        viper.GetString("region"),
-		EndPoint:      viper.GetString("end_point"),
-		LogLevel:      viper.GetString("log_level"),
-		LogFormatType: viper.GetString("log_format_type"),
-	}, nil
 }
