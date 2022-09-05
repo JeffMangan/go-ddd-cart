@@ -26,6 +26,7 @@ The building blocks of this project include:
 
 ## Setup
 As mentioned above, this is only because the current tests are using dynamodb local.
+<<<<<<< HEAD
 
 * docker run -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb
   * to understand the cmd line params go here https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html#DynamoDBLocal.CommandLineOptions 
@@ -50,4 +51,24 @@ As mentioned above, this is only because the current tests are using dynamodb lo
      * Update the path to the actual path of your config file 
 
 You should now be able to run all tests from the project root using "go test ./..."
+=======
 
+* docker run -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb
+  * to understand the cmd line params go here https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html#DynamoDBLocal.CommandLineOptions 
+* This next step is needed each time you start a new instance of ddb local, the user table will need to be created.  The enpoint-url is specific to ddb local only.
+
+  * aws dynamodb create-table \
+--table-name User \
+--attribute-definitions AttributeName=id,AttributeType=S \
+--key-schema AttributeName=id,KeyType=HASH \
+--provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+--endpoint-url http://localhost:8000
+  * aws dynamodb list-tables --endpoint-url http://localhost:8000
+    * Only required if you want to see that the user table was created.
+  * web based ddb local amin console (this is not required but can be helpful to easily see your data)
+    * https://www.npmjs.com/package/dynamodb-admin
+
+1.  In the shared/config.go file change the ConfigPath constant to the path on your local machine
+>>>>>>> master
+
+You should now be able to run all tests from the project root using "go test ./..."

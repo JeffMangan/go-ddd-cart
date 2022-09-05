@@ -16,7 +16,6 @@ type Config struct {
 }
 
 func GetConfigPath() string {
-	os.Setenv("CONFIG_FILE_PATH", "/home/jmangan/Documents/code/go/go-ddd-cart/")
 	return os.Getenv("CONFIG_FILE_PATH")
 }
 
@@ -27,14 +26,15 @@ func LoadConfig(path string) (*Config, *CustomError) {
 	viper.SetConfigType("env")
 
 	viper.AutomaticEnv()
+}
 
-	if err := viper.ReadInConfig(); err != nil {
-		return nil, NewCustomError(err.Error(), ErrorTypeSystem)
-	} else {
-		var config Config
-		if err = viper.Unmarshal(&config); err != nil {
-			return nil, NewCustomError(err.Error(), ErrorTypeSystem)
-		}
-		return &config, nil
-	}
+type Config struct {
+	AccountID     string
+	IsLocal       bool
+	EndPoint      string
+	Region        string
+	Key           string
+	Secret        string
+	LogLevel      string
+	LogFormatType string
 }
