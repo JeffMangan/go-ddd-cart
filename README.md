@@ -25,7 +25,7 @@ The building blocks of this project include:
 * shared -- Shared logic
 
 ## Setup (for DynamoDB Local Testing)
-* docker run -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb
+* docker run --name ddblocal -p 8001:8001 amazon/dynamodb-local -jar DynamoDBLocal.jar -sharedDb
   * to understand the cmd line params go here https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html#DynamoDBLocal.CommandLineOptions 
   * if you are unable to connect, make sure there are no existing processes running on port 8000.
 * This next step is needed each time you run a new container instance, the user table will need to be created.  The endpoint-url is specific to ddb local only.
@@ -44,7 +44,7 @@ The building blocks of this project include:
    * export AWS_DDBLOCAL_REGION=us-east-1
    * export LOG_LEVEL=Error
    * export LOG_FORMAT_TYPE=json
-   * export CONFIG_FILE_PATH=whever_you_put_it/go-ddd-cart/
+   * export CONFIG_FILE_PATH=/whever_you_put_it/go-ddd-cart/
      * Update the path to the actual path of your root folder where app.env file is located
      * You may have to configure your ide to use configuration setup for env variables.
 

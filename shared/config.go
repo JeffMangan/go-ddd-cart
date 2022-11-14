@@ -16,7 +16,7 @@ type Config struct {
 }
 
 func GetConfigPath() string {
-	os.Setenv("CONFIG_FILE_PATH", "/home/jmangan/Documents/code/go/go-ddd-cart/")
+	//os.Setenv("CONFIG_FILE_PATH", "....") pull from env variable as seen below
 	return os.Getenv("CONFIG_FILE_PATH")
 }
 
